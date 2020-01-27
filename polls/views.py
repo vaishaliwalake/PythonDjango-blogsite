@@ -37,3 +37,6 @@ def index(request):
         'latest_question_list': latest_question_list,
     }
     return HttpResponse(template.render(context, request))
+
+def post_list(request):
+    return render(request, 'blog/post_list.html', {})
