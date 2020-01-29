@@ -5,7 +5,8 @@ from django.shortcuts import render
 
 
 from django.http import HttpResponse
-
+def post_list(request):
+    return render(request, 'blog/post_list.html', {})
 
 def index(request):
     return HttpResponse("Hello, world. You're at the polls index.")
@@ -18,25 +19,14 @@ def results(request, question_id):
 
 def vote(request, question_id):
     return HttpResponse("You're voting on question %s." % question_id)
-from django.http import HttpResponse
-
-from .models import Question
-
-
-
-from django.http import HttpResponse
-from django.template import loader
-
-from .models import Question
+import django.template
 
 
 def index(request):
     latest_question_list = Question.objects.order_by('-pub_date')[:5]
-    template = loader.get_template('polls/index.html')
+    template = django.template.loader.get_template('polls/index.html')
     context = {
         'latest_question_list': latest_question_list,
     }
     return HttpResponse(template.render(context, request))
 
-def post_list(request):
-    return render(request, 'blog/post_list.html', {})
