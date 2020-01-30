@@ -19,3 +19,15 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
+
+    class BaseModel (models.Model):
+        objects = models.Manager ()
+
+        class Meta:
+            abstract = True
+
+    class Model1 (BaseModel):
+        id = models.AutoField (primary_key=True)
+
+    class Model2 (BaseModel):
+        id = models.AutoField (primary_key=True)
